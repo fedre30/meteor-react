@@ -26,3 +26,4 @@ export const User = {
     Accounts.createUser(opts, callback);
   }
 };
+
