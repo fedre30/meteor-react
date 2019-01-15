@@ -1,15 +1,17 @@
 import React from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
+import {withTracker} from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
-import students  from '../../api/students';
+import {withRouter} from 'react-router-dom'
+import {Button, Checkbox, Form} from 'semantic-ui-react'
+import students from '../../api/students.js';
+import styled from 'styled-components';
 
-
-export default class List extends React.Component {
-  handleSubmit(e) {
+class List extends React.Component {
+  handleSubmit = (e) => {
     e.preventDefault();
     const name = ReactDOM.findDOMNode(this.refs.name).value.trim();
 
-    students.insert ({
+    students.insert({
       name
     });
     console.log(name);
@@ -17,28 +19,56 @@ export default class List extends React.Component {
     ReactDOM.findDOMNode(this.refs.name).value = '';
   }
 
+  goToEdit(id) {
+    this.props.history.push(`edit/${id}`);
+  }
+
+    goToDelete(id) {
+      this.props.history.push(`delete/${id}`);
+  }
+
+
   render() {
     return (
-      <div className='List'>
-        <form onSubmit={() => this.handleSubmit}>
-        <input type="text" ref="name" placeholder="Student's name"/>
-        <input type="submit"/>
-        </form>
+      <ListContainer>
+        <Form>
+          <Form.Field>
+            <label>First Name</label>
+            <input className="list-input" ref="name" placeholder='First Name'/>
+          </Form.Field>
+          <Form.Field>
+            <Button type='submit' onClick={this.handleSubmit}>Submit</Button>
 
-        <div>
+          </Form.Field>
+        </Form>
+
+        <div className="list">
           <h2>List</h2>
-
-
+          {this.props.students.map(student => (
+            <div className="list-item" key={student._id}>{student.name}
+              <Button className="edit" onClick={() => this.goToEdit(student._id)}>Edit</Button>
+              <Button className="delete" onClick={() => this.goToDelete(student._id)}>Delete</Button>
+            </div>
+          ))}
 
         </div>
-
-      </div>
+      </ListContainer>
     );
   }
+
 }
 
-export default withTracker(() => {
+const ListContainer = styled.div`
+
+width: 50%;
+margin: 0 auto;
+
+
+`
+
+
+export default withRouter(withTracker(() => {
   return {
     students: students.find({}).fetch(),
   };
-})(List);
+})(List));

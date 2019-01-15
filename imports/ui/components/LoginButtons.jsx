@@ -7,14 +7,7 @@ export default class LoginButtons extends React.Component {
   }
 
   render() {
-    return <Blaze template="loginButtons" align={this.props.align} />
+    return <Blaze template="loginButtons"/>
   }
 }
 
-LoginButtons.propTypes = {
-  align: React.PropTypes.string,
-}
-
-LoginButtons.defaultProps = {
-  align: 'right',
-}

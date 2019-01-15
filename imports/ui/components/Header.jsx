@@ -8,8 +8,8 @@ export default class Header extends React.Component {
     return (
       <header className='Header'>
         <NavLink activeClassName="active" exact to="/">Home</NavLink>
-        <NavLink activeClassName="active" to="/about">About Page</NavLink>
-        <NavLink to="/bad-url">Not Found Page</NavLink>
+        <NavLink activeClassName="active" to="edit/:id">Edit</NavLink>
+        <NavLink to="delete/:id">Delete</NavLink>
         <LoginButtons align='left' />
       </header>
     );
