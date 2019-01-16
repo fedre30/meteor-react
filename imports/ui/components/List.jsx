@@ -11,20 +11,24 @@ class List extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const name = ReactDOM.findDOMNode(this.refs.name).value.trim();
+    const surname = ReactDOM.findDOMNode(this.refs.surname).value.trim();
+    const email = ReactDOM.findDOMNode(this.refs.email).value.trim();
 
     students.insert({
-      name
+      name,
+      surname,
+      email
     });
 
     ReactDOM.findDOMNode(this.refs.name).value = '';
   }
 
-  goToEdit(id, name) {
-    this.props.history.push({pathname: `edit/${id}`, state: {id: id, name: name}  });
+  goToEdit(id, name, surname, email) {
+    this.props.history.push({pathname: `edit/${id}`, state: {id: id, name: name, surname: surname, email: email}  });
   }
 
-    goToDelete(id, name) {
-      this.props.history.push({pathname: `delete/${id}`, state: {id: id, name: name}});
+    goToDelete(id, name, surname, email) {
+      this.props.history.push({pathname: `delete/${id}`, state: {id: id, name: name, surname: surname, email: email}});
   }
 
 
@@ -37,6 +41,14 @@ class List extends React.Component {
             <input className="list-input" ref="name" placeholder='First Name'/>
           </Form.Field>
           <Form.Field>
+            <label>Last Name</label>
+            <input className="list-input" ref="surname" placeholder='Last Name'/>
+          </Form.Field>
+          <Form.Field>
+            <label>Email</label>
+            <input className="list-input" ref="email" placeholder='Email'/>
+          </Form.Field>
+          <Form.Field>
             <Button type='submit' className="submit" onClick={this.handleSubmit}>Submit</Button>
 
           </Form.Field>
@@ -46,8 +58,8 @@ class List extends React.Component {
           <h2>List</h2>
           {this.props.students.map(student => (
             <div className="list-item" key={student._id}>{student.name}
-              <Button className="edit" onClick={() => this.goToEdit(student._id, student.name)}>Edit</Button>
-              <Button className="delete" onClick={() => this.goToDelete(student._id, student.name)}>Delete</Button>
+              <Button className="edit" onClick={() => this.goToEdit(student._id, student.name, student.surname, student.email)}>Edit</Button>
+              <Button className="delete" onClick={() => this.goToDelete(student._id, student.name, student.surname, student.email)}>Delete</Button>
             </div>
           ))}
 

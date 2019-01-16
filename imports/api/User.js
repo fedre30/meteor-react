@@ -24,6 +24,10 @@ export const User = {
 
   create: function(opts, callback) {
     Accounts.createUser(opts, callback);
+  },
+
+  roles: function () {
+    Roles.addUsersToRoles(this.id, 'default-group')
   }
 };
 
