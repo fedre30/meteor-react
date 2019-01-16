@@ -2,9 +2,10 @@ import React from 'react';
 import {withTracker} from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
 import {withRouter} from 'react-router-dom'
-import {Button, Checkbox, Form} from 'semantic-ui-react'
+import {Button, Form} from 'semantic-ui-react'
 import students from '../../api/students.js';
 import styled from 'styled-components';
+import Colors from '../assets/styles/Colors';
 
 class List extends React.Component {
   handleSubmit = (e) => {
@@ -14,17 +15,16 @@ class List extends React.Component {
     students.insert({
       name
     });
-    console.log(name);
 
     ReactDOM.findDOMNode(this.refs.name).value = '';
   }
 
-  goToEdit(id) {
-    this.props.history.push(`edit/${id}`);
+  goToEdit(id, name) {
+    this.props.history.push({pathname: `edit/${id}`, state: {id: id, name: name}  });
   }
 
-    goToDelete(id) {
-      this.props.history.push(`delete/${id}`);
+    goToDelete(id, name) {
+      this.props.history.push({pathname: `delete/${id}`, state: {id: id, name: name}});
   }
 
 
@@ -37,7 +37,7 @@ class List extends React.Component {
             <input className="list-input" ref="name" placeholder='First Name'/>
           </Form.Field>
           <Form.Field>
-            <Button type='submit' onClick={this.handleSubmit}>Submit</Button>
+            <Button type='submit' className="submit" onClick={this.handleSubmit}>Submit</Button>
 
           </Form.Field>
         </Form>
@@ -46,8 +46,8 @@ class List extends React.Component {
           <h2>List</h2>
           {this.props.students.map(student => (
             <div className="list-item" key={student._id}>{student.name}
-              <Button className="edit" onClick={() => this.goToEdit(student._id)}>Edit</Button>
-              <Button className="delete" onClick={() => this.goToDelete(student._id)}>Delete</Button>
+              <Button className="edit" onClick={() => this.goToEdit(student._id, student.name)}>Edit</Button>
+              <Button className="delete" onClick={() => this.goToDelete(student._id, student.name)}>Delete</Button>
             </div>
           ))}
 
@@ -62,6 +62,21 @@ const ListContainer = styled.div`
 
 width: 50%;
 margin: 0 auto;
+
+.edit, .delete, .submit {
+  background-color: ${Colors.primary};
+  color: white;
+  margin: 1rem 0;
+  
+}
+
+.edit, .delete {
+  margin: 1rem 2rem;
+}
+
+.list-item {
+  margin: 2rem 0;
+}
 
 
 `

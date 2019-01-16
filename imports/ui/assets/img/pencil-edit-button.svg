@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="18px" viewBox="0 0 19 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>pencil-edit-button</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home" transform="translate(-358.000000, -506.000000)" fill="#C1BFBF" fill-rule="nonzero">
+            <g id="Group-12" transform="translate(358.000000, 505.000000)">
+                <g id="Group-10">
+                    <g id="pencil-edit-button" transform="translate(0.000000, 1.000000)">
+                        <path d="M11.8146693,3.00396811 L15.6796991,6.68347314 L5.89624136,15.997403 L2.0334029,12.317898 L11.8146693,3.00396811 Z M18.6125091,2.11655585 L16.8888546,0.47562294 C16.2227216,-0.15854098 15.1410593,-0.15854098 14.4726631,0.47562294 L12.8215744,2.04747258 L16.6866042,5.72701182 L18.6125091,3.89353493 C19.1291636,3.40164152 19.1291636,2.60841507 18.6125091,2.11655585 Z M0.010755466,17.4897385 C-0.0595831189,17.7911057 0.226225758,18.0611461 0.542821237,17.9878563 L4.84974835,16.9937069 L0.986909892,13.3142019 L0.010755466,17.4897385 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
