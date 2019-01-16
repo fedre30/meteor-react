@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {withRouter} from 'react-router-dom'
 import {Button, Form} from 'semantic-ui-react'
 import students from '../../api/students.js';
+import {User} from '../../api/User';
 import styled from 'styled-components';
 import Colors from '../assets/styles/Colors';
 
@@ -33,39 +34,49 @@ class List extends React.Component {
 
 
   render() {
-    return (
-      <ListContainer>
-        <Form>
-          <Form.Field>
-            <label>First Name</label>
-            <input className="list-input" ref="name" placeholder='First Name'/>
-          </Form.Field>
-          <Form.Field>
-            <label>Last Name</label>
-            <input className="list-input" ref="surname" placeholder='Last Name'/>
-          </Form.Field>
-          <Form.Field>
-            <label>Email</label>
-            <input className="list-input" ref="email" placeholder='Email'/>
-          </Form.Field>
-          <Form.Field>
-            <Button type='submit' className="submit" onClick={this.handleSubmit}>Submit</Button>
+    if(User.isLoggedIn()){
+      return (
+        <ListContainer>
+          <Form>
+            <Form.Field>
+              <label>First Name</label>
+              <input className="list-input" ref="name" placeholder='First Name'/>
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input className="list-input" ref="surname" placeholder='Last Name'/>
+            </Form.Field>
+            <Form.Field>
+              <label>Email</label>
+              <input className="list-input" ref="email" placeholder='Email'/>
+            </Form.Field>
+            <Form.Field>
+              <Button type='submit' className="submit" onClick={this.handleSubmit}>Submit</Button>
 
-          </Form.Field>
-        </Form>
+            </Form.Field>
+          </Form>
 
-        <div className="list">
-          <h2>List</h2>
-          {this.props.students.map(student => (
-            <div className="list-item" key={student._id}>{student.name}
-              <Button className="edit" onClick={() => this.goToEdit(student._id, student.name, student.surname, student.email)}>Edit</Button>
-              <Button className="delete" onClick={() => this.goToDelete(student._id, student.name, student.surname, student.email)}>Delete</Button>
-            </div>
-          ))}
+          <div className="list">
+            {this.props.students.map(student => (
+              <div className="list-item" key={student._id}>{student.name}
+                <Button className="edit" onClick={() => this.goToEdit(student._id, student.name, student.surname, student.email)}>Edit</Button>
+                <Button className="delete" onClick={() => this.goToDelete(student._id, student.name, student.surname, student.email)}>Delete</Button>
+              </div>
+            ))}
 
-        </div>
-      </ListContainer>
-    );
+          </div>
+        </ListContainer>
+      );
+    }
+    else {
+      return(
+        <ListContainer>
+          <h2>Please login</h2>
+        </ListContainer>
+
+      )
+    }
+
   }
 
 }

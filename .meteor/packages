@@ -35,3 +35,5 @@ shell-server
 dynamic-import
 underscore
 alanning:roles
+accounts-github
+github-config-ui

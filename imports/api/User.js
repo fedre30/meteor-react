@@ -15,6 +15,7 @@ export const User = {
   },
 
   isLoggedOut: function() {
+
     return ! User.isLoggedIn();
   },
 
@@ -22,12 +23,15 @@ export const User = {
     return User.get().profile;
   },
 
-  create: function(opts, callback) {
-    Accounts.createUser(opts, callback);
+  create: function() {
+    Accounts.createUser(function(roleUser, user){
+      user.roles = roleUser;
+      return user
+    });
   },
 
   roles: function () {
-    Roles.addUsersToRoles(this.id, 'default-group')
+    Meteor.roles();
   }
 };
 
