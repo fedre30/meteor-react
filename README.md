@@ -1,3 +1,6 @@
 # meteor-react
 
-By Federica Alfano
+By Federica Alfano and Aymeline Chemin
+
+## Run
+```meteor run```
