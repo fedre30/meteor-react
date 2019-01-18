@@ -1,37 +1,39 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
+import { Roles } from 'meteor/alanning:roles';
 
 export const User = {
-  get: function() {
+  get: () => {
     return Meteor.user() || {};
   },
 
-  id: function() {
+  id: () => {
     return Meteor.userId();
   },
 
-  isLoggedIn: function() {
+  isLoggedIn: () => {
     return !! Meteor.userId();
   },
 
-  isLoggedOut: function() {
+  isLoggedOut: () => {
 
     return ! User.isLoggedIn();
   },
 
-  profile: function() {
+  profile: () =>{
     return User.get().profile;
   },
 
-  create: function() {
-    Accounts.createUser(function(roleUser, user){
-      user.roles = roleUser;
-      return user
+  create: () => {
+    Accounts.createUser((role, user) =>{
+      if (role === 'admin') {
+        Roles.addUsersToRoles(user, 'admin');
+      }
     });
   },
 
-  roles: function () {
-    Meteor.roles();
+  roles: () => {
+    return ['admin', 'user']
   }
 };
 

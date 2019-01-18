@@ -71,7 +71,7 @@ class List extends React.Component {
     else {
       return(
         <ListContainer>
-          <h2>Please login</h2>
+          <h2>Please login or sign in</h2>
         </ListContainer>
 
       )
