@@ -58,7 +58,7 @@ class List extends React.Component {
 
           <div className="list">
             {this.props.students.map(student => (
-              <div className="list-item" key={student._id}>{student.name}
+              <div className="list-item" key={student._id}>{student.name} {student.surname}
                 <Button className="edit" onClick={() => this.goToEdit(student._id, student.name, student.surname, student.email)}>Edit</Button>
                 <Button className="delete" onClick={() => this.goToDelete(student._id, student.name, student.surname, student.email)}>Delete</Button>
               </div>
